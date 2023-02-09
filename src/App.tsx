@@ -6,6 +6,7 @@ import {
   LocationData,
   PokemonData,
   PokemonEncounters,
+  RegionData,
 } from "./interfaces";
 import Pokemon from "./components/Pokemon";
 import "./App.css";
@@ -31,34 +32,34 @@ import Loading from "./components/Loading";
 
 const url = "https://pokeapi.co/api/v2/";
 const numPokemon = 151;
-const regions = [
-  "kanto",
-  "johto",
-  "hoenn",
-  "sinnoh",
-  "unova",
-  "kalos",
-  "alola",
-  "galar",
-  "hisui",
-  "paldea",
-];
+// const regions = [
+//   "kanto",
+//   "johto",
+//   "hoenn",
+//   "sinnoh",
+//   "unova",
+//   "kalos",
+//   "alola",
+//   "galar",
+//   "hisui",
+//   "paldea",
+// ];
 
 // TODO: Properly define TypeScript types
 
 function App() {
   //fetched data is stored in these
-  const [regionData, setRegionData] = useState<any>();
-  const [locationData, setLocationData] = useState<any>();
-  const [areaData, setAreaData] = useState<any>();
+  const [regionData, setRegionData] = useState<RegionData>();
+  const [locationData, setLocationData] = useState<LocationData>();
+  const [areaData, setAreaData] = useState<LocationAreaData>();
 
   const [regionName, setRegionName] = useState("");
   const [locationName, setLocationName] = useState("");
   const [areaName, setAreaName] = useState("");
 
-  const [newRegion, setNewRegion] = useState("kanto");
-  const [newLocation, setNewLocation] = useState("pallet-town");
-  const [newArea, setNewArea] = useState("pallet-town-area");
+  const [newRegion, setNewRegion] = useState<string>("kanto");
+  const [newLocation, setNewLocation] = useState<string>("pallet-town");
+  const [newArea, setNewArea] = useState<string>("pallet-town-area");
 
   // const [party, setParty] = useState<Array<any>>([]);
   const [pokeId, setPokeId] = useState(getRandomId());
@@ -148,7 +149,7 @@ function App() {
   }, [newRegion]);
 
   const comparePokemon = (comp: string | number) => {
-    const result = encounters.find(({ id }) => id == comp);
+    const result = encounters.find(({ id }: { id: number }) => id == comp);
     if (result) return true;
     else return false;
   };
@@ -253,14 +254,15 @@ function App() {
           </Button>
         </Box>
 
-        <div style={{}}>
+        <div>
           <Autocomplete
             disablePortal
             id="locations"
             value={newLocation}
-            onChange={(event: any, newValue: string) => {
-              setNewLocation(newValue);
-              fetchLocation(newValue);
+            onChange={(event, newValue) => {
+              !newValue
+                ? null
+                : (setNewLocation(newValue), fetchLocation(newValue));
             }}
             options={
               !regionData
@@ -278,9 +280,8 @@ function App() {
             disablePortal
             id="areas"
             value={newArea}
-            onChange={(event: any, newValue: string) => {
-              setNewArea(newValue);
-              fetchArea(newValue);
+            onChange={(event, newValue) => {
+              !newValue ? null : (setNewArea(newValue), fetchArea(newValue));
             }}
             options={
               !locationData

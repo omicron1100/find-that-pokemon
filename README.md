@@ -1,7 +1,9 @@
 # Find That Pokemon
 
-Navigate to the project directory in a terminal.
-Run `npm install`.
+Navigate to the project directory in a terminal.  
+
+Run `npm install`.  
+
 Run `npm run dev`.
 
 Open a web browser and navigate to http://localhost:5173.

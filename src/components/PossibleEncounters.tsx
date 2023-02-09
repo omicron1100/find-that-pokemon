@@ -3,6 +3,12 @@ import { LocationAreaData } from "../interfaces";
 
 const EncounterList = ({encounterList, loading} : any) => {
   console.log(encounterList);
+
+  if(!encounterList || encounterList.length == 0)
+    return (
+      <Box>Looks like there's nothing here! Look somewhere else.</Box>
+    )
+
   return loading ? <>Loading...</> : (
     <Box>
       <p>Possible Pokemon:</p>

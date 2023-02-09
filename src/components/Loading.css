@@ -12,3 +12,7 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+
+img {
+  object-fit: contain;
+}

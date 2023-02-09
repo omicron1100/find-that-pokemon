@@ -5,7 +5,7 @@ import "./Loading.css";
 const Loading = () => {
   return (
     <Box>
-        <img src={pokeball}></img>
+      <img className="icon-spin" src={pokeball}></img>
     </Box>
   );
 };

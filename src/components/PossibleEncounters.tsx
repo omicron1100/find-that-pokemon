@@ -1,18 +1,18 @@
 import { Box } from "@mui/material";
 import { LocationAreaData } from "../interfaces";
 
-const EncounterList = (encounterList: any) => {
-    
-  return (
+const EncounterList = ({encounterList, loading} : any) => {
+  console.log(encounterList);
+  return loading ? <>Loading...</> : (
     <Box>
       <p>Possible Pokemon:</p>
-      {encounterList.map((encounter: any) => (
+      {encounterList.map((encounter: any) => 
           <img
-            src={`${encounter.pokemon.url}`}
-            alt={encounter.pokemon.name}
+            src={`${encounter.sprites.front_default}`}
+            alt={encounter.name}
             loading="lazy"
           />
-      ))}
+      )}
     </Box>
   );
 };

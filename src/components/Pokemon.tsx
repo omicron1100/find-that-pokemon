@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import { Card } from "@mui/material";
+import { Card, Paper } from "@mui/material";
+import Loading from "./Loading";
 
-const PokemonCard = (props : any) => {
-  return (
-    <Card>
-        
-    </Card>
+const PokemonCard = ({pokeData, loading} : any) => {
+  console.log(pokeData);
+  return loading ? <Loading /> : (
+    <Paper >
+      <img src={pokeData.sprites.other["home"].front_default}></img>
+    </Paper>
   );
 };
 

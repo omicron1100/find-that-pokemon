@@ -1,15 +1,12 @@
-# Pokemon Party Picker
+# Where's That Pokemon?
 
 Navigate to the project directory in a terminal, then run `npm start`.
 
-Open a web browser and navigate to http://localhost:3000
+Open a web browser and navigate to http://localhost:4000
 
 ## How to Play
 
-Navigate to various locations in the Pokemon world to assemble your own party!
+Find that Pokemon! You are on the hunt for Pokemon throughout the Pokemon world. You are given a Pokemon to find and you must navigate to any location where that Pokemon may be encountered in-game.
 
-Select a region to start, then pick a location to explore. 
+When you think you have found a location where the Pokemon can be found, click `Found It!`
 
-When you are ready to search, click the `Encounter` button to run into a Pokemon! Then decide if you want to keep the Pokemon in your party or not
-
-Each location may have more than one area, so be sure to 

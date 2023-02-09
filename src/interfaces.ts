@@ -1,3 +1,31 @@
+export interface RegionData {
+  id: 6;
+  locations: {
+    name: string;
+    url: string;
+  }[];
+  main_generation: {
+    name: string;
+    url: string;
+  };
+  name: string;
+  names: {
+    language: {
+      name: string;
+      url: string;
+    };
+    name: string;
+  }[];
+  pokedexes: {
+    name: string;
+    url: string;
+  }[];
+  version_groups: {
+    name: string;
+    url: string;
+  }[];
+}
+
 export interface LocationData {
   id: number;
   name: string;
@@ -254,13 +282,13 @@ export interface PokemonData {
       "generation-v": {
         "black-white": {
           animated: {
-            back_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/35.gif";
+            back_default: string;
             back_female: string | null;
-            back_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/back/shiny/35.gif";
+            back_shiny: string;
             back_shiny_female: string | null;
-            front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/35.gif";
+            front_default: string;
             front_female: string | null;
-            front_shiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/35.gif";
+            front_shiny: string;
             front_shiny_female: string | null;
           };
           back_default: string;

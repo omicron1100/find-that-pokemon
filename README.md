@@ -1,5 +1,7 @@
 # Find That Pokemon
 
+Make sure you have the latest Node.js.
+
 Navigate to the project directory in a terminal.  
 
 Run `npm install`.  

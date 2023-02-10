@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { LocationAreaData } from "../interfaces";
 
 const EncounterList = ({encounterList, loading} : any) => {
@@ -10,7 +11,7 @@ const EncounterList = ({encounterList, loading} : any) => {
     )
 
   return loading ? <>Loading...</> : (
-    <Box>
+    <Grid2>
       <p>Possible Pokemon:</p>
       {encounterList.map((encounter: any) => 
           <img
@@ -19,7 +20,7 @@ const EncounterList = ({encounterList, loading} : any) => {
             loading="lazy"
           />
       )}
-    </Box>
+    </Grid2>
   );
 };
 

@@ -1,19 +1,19 @@
 import { Autocomplete, Box, Container, Paper, TextField } from "@mui/material";
-import { SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { LocationData, LocationAreaData, RegionData } from "../interfaces";
 
 type LocationAreaSelectProps = {
   newLocation: string;
-  setNewLocation: SetStateAction<string>;
+  setNewLocation: Dispatch<SetStateAction<string>>;
   newArea: string;
-  setNewArea: SetStateAction<string>;
+  setNewArea: Dispatch<SetStateAction<string>>;
   regionData: RegionData;
   locationData: LocationData;
   fetchLocation: (id: string | number) => void;
   fetchArea: (id: string | number) => void;
 };
 
-const LocationAreaSelect = (LocationAreaSelectProps) => {
+const LocationAreaSelect = (props : LocationAreaSelectProps) => {
   const {
     newLocation,
     setNewLocation,
@@ -23,7 +23,7 @@ const LocationAreaSelect = (LocationAreaSelectProps) => {
     locationData,
     fetchLocation,
     fetchArea,
-  } = LocationAreaSelectProps;
+  } = props;
 
   return (
     <Container>

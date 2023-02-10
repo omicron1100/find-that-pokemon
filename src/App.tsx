@@ -23,12 +23,14 @@ import {
   MenuItem,
   Modal,
   NativeSelect,
+  Paper,
   TextField,
   Typography,
 } from "@mui/material";
 // import Party from "./components/Party";
 import EncounterList from "./components/PossibleEncounters";
 import Loading from "./components/Loading";
+import LocationAreaSelect from "./components/LocationAreaSelect";
 
 const url = "https://pokeapi.co/api/v2/";
 const numPokemon = 151;
@@ -202,14 +204,16 @@ function App() {
         </Menu> */}
       </Box>
 
-      <Box>You are in {areaName}.</Box>
+      <Box>
+        You are in <Paper>{areaName}</Paper>
+      </Box>
 
       <Box>
         <p>Find this Pokemon!</p>
         <Pokemon pokeData={pokemon} loading={loading} />
 
         <Box>
-          <Button variant="outlined" onClick={handleOpenResult}>
+          <Button variant="contained" onClick={handleOpenResult}>
             Found It!
           </Button>
           <Modal
@@ -254,47 +258,16 @@ function App() {
           </Button>
         </Box>
 
-        <div>
-          <Autocomplete
-            disablePortal
-            id="locations"
-            value={newLocation}
-            onChange={(event, newValue) => {
-              !newValue
-                ? null
-                : (setNewLocation(newValue), fetchLocation(newValue));
-            }}
-            options={
-              !regionData
-                ? []
-                : regionData.locations.map(
-                    (location: { name: string; url: string }) => location.name
-                  )
-            }
-            fullWidth={true}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Location" />}
-          />
-
-          <Autocomplete
-            disablePortal
-            id="areas"
-            value={newArea}
-            onChange={(event, newValue) => {
-              !newValue ? null : (setNewArea(newValue), fetchArea(newValue));
-            }}
-            options={
-              !locationData
-                ? []
-                : locationData.areas.map(
-                    (area: { name: string; url: string }) => area.name
-                  )
-            }
-            fullWidth={true}
-            sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Area" />}
-          />
-        </div>
+        <LocationAreaSelect
+          newLocation={newLocation}
+          setNewLocation={setNewLocation}
+          newArea={newArea}
+          setNewArea={setNewArea}
+          regionData={regionData}
+          locationData={locationData}
+          fetchLocation={fetchLocation}
+          fetchArea={fetchArea}
+        />
       </Box>
 
       <Button onClick={() => setHintVisible(!hintVisible)}>Show Hint?</Button>

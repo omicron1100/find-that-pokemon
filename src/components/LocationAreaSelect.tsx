@@ -7,11 +7,17 @@ type LocationAreaSelectProps = {
   setNewLocation: Dispatch<SetStateAction<string>>;
   newArea: string;
   setNewArea: Dispatch<SetStateAction<string>>;
-  regionData: RegionData;
-  locationData: LocationData;
+  regionData: RegionData | undefined;
+  locationData: LocationData | undefined;
   fetchLocation: (id: string | number) => void;
   fetchArea: (id: string | number) => void;
 };
+
+function capitalizeName (name : string) {
+    let newName = name.split("-");
+    newName.forEach((word) => word[0].toUpperCase() + word.substring(1));
+    return newName.join(" ");
+}
 
 const LocationAreaSelect = (props : LocationAreaSelectProps) => {
   const {
@@ -26,15 +32,14 @@ const LocationAreaSelect = (props : LocationAreaSelectProps) => {
   } = props;
 
   return (
-    <Container>
-      <Paper>
+    <Container style={{}}>
+      <Paper style={{justifyContent: "space-between"}}>
         <Autocomplete
           disablePortal
           id="locations"
           value={newLocation}
           onChange={(event, newValue) => {
-            !newValue
-              ? null
+            !newValue ? null
               : (setNewLocation(newValue), fetchLocation(newValue));
           }}
           options={
@@ -44,7 +49,7 @@ const LocationAreaSelect = (props : LocationAreaSelectProps) => {
                   (location: { name: string; url: string }) => location.name
                 )
           }
-          fullWidth={true}
+          style={{padding: 10}}
           renderInput={(params) => <TextField {...params} label="Location" />}
         />
 
@@ -62,7 +67,7 @@ const LocationAreaSelect = (props : LocationAreaSelectProps) => {
                   (area: { name: string; url: string }) => area.name
                 )
           }
-          fullWidth={true}
+          style={{padding: 10}}
           renderInput={(params) => <TextField {...params} label="Area" />}
         />
       </Paper>

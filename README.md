@@ -1,5 +1,13 @@
 # Find That Pokemon
 
+App is deployed!
+
+https://pokefind-omicron.netlify.app/
+
+
+
+## Building the App
+
 Make sure you have the latest Node.js.
 
 Navigate to the project directory in a terminal.  
@@ -9,6 +17,8 @@ Run `npm install`.
 Run `npm run dev`.
 
 Open a web browser and navigate to http://localhost:5173.
+
+
 
 ## How to Play
 

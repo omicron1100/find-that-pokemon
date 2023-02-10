@@ -68,14 +68,24 @@ function App() {
   const [pokeId, setPokeId] = useState(getRandomId());
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadPokemon, setLoadPokemon] = useState<boolean>(true);
   const [encounters, setEncounters] = useState<Array<PokemonData>>([]);
   const [hintVisible, setHintVisible] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   //
   const [buttonAnchor, setButtonAnchor] = useState<null | HTMLElement>(null);
   const [numFound, setNumFound] = useState(0);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const modalMessage = {
+    success: "You did it! You found " + (pokemon? pokemon.name : "null") + "!",
+    fail: "Sorry, look somewhere else!"
+  }
 
   const handleOpenResult = () => {
+    pokemon ? (comparePokemon(pokemon.id) ? (setSuccessMessage(modalMessage.success), setNumFound(numFound+1)) :
+    setSuccessMessage(modalMessage.fail)) : setSuccessMessage(modalMessage.fail)
+
     setOpenModal(true);
   };
   const handleCloseResult = () => {
@@ -89,11 +99,11 @@ function App() {
   };
 
   const fetchPokemon = async (pokeId: number) => {
-    setLoading(true);
+    setLoadPokemon(true);
     const pokedat = await axios.get(url + "pokemon/" + pokeId);
     setPokemon(pokedat.data);
     // console.log(res.data);
-    setLoading(false);
+    setLoadPokemon(false);
   };
 
   const fetchRegion = async (id: string | number) => {
@@ -211,7 +221,7 @@ function App() {
 
       <Box>
         <p>Find this Pokemon!</p>
-        <Pokemon pokeData={pokemon} loading={loading} />
+        <Pokemon pokeData={pokemon} loading={setLoadPokemon} />
 
         <Container style={{justifyContent: "space-between" }}>
           <Button variant="contained" onClick={handleOpenResult} style={{margin: 10}}>
@@ -237,10 +247,7 @@ function App() {
               }}
             >
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                {comparePokemon(pokemon.id)
-                  ? (setNumFound(numFound + 1),
-                    "You did it! You found " + pokemon.name + "!")
-                  : "Sorry, look somewhere else!"}
+                {successMessage}
               </Typography>
               <Typography id="modal-modal-description">
                 You have found {numFound} Pokemon.

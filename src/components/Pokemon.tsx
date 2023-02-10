@@ -4,7 +4,7 @@ import Loading from "./Loading";
 
 const PokemonCard = ({pokeData, loading} : any) => {
   console.log(pokeData);
-  return loading ? <Loading /> : (
+  return !pokeData ? <Loading /> : (
     <Box>
       <Paper style={{backgroundColor: '#555', borderRadius: '8px'}}>
         <img src={pokeData.sprites.other["home"].front_default} style={{padding: '20x'}}></img>

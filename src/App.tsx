@@ -15,6 +15,7 @@ import {
   Autocomplete,
   Box,
   Button,
+  Container,
   FormControl,
   ImageList,
   ImageListItem,
@@ -66,8 +67,8 @@ function App() {
   // const [party, setParty] = useState<Array<any>>([]);
   const [pokeId, setPokeId] = useState(getRandomId());
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [encounters, setEncounters] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [encounters, setEncounters] = useState<Array<PokemonData>>([]);
   const [hintVisible, setHintVisible] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   //
@@ -212,8 +213,8 @@ function App() {
         <p>Find this Pokemon!</p>
         <Pokemon pokeData={pokemon} loading={loading} />
 
-        <Box>
-          <Button variant="contained" onClick={handleOpenResult}>
+        <Container style={{justifyContent: "space-between" }}>
+          <Button variant="contained" onClick={handleOpenResult} style={{margin: 10}}>
             Found It!
           </Button>
           <Modal
@@ -253,10 +254,11 @@ function App() {
             onClick={() => {
               fetchPokemon(getRandomId());
             }}
+            style={{margin: 10}}
           >
             Search for Different Pokemon
           </Button>
-        </Box>
+        </Container>
 
         <LocationAreaSelect
           newLocation={newLocation}

@@ -1,8 +1,13 @@
 import { Box } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { LocationAreaData } from "../interfaces";
+import { LocationAreaData, PokemonData } from "../interfaces";
 
-const EncounterList = ({encounterList, loading} : any) => {
+type EncounterListProps = {
+  encounterList: Array<PokemonData>,
+  loading: boolean
+}
+
+const EncounterList : React.FC<EncounterListProps> = ({encounterList, loading}) : JSX.Element => {
   console.log(encounterList);
 
   if(!encounterList || encounterList.length == 0)
@@ -13,7 +18,7 @@ const EncounterList = ({encounterList, loading} : any) => {
   return loading ? <>Loading...</> : (
     <Grid2>
       <p>Possible Pokemon:</p>
-      {encounterList.map((encounter: any) => 
+      {encounterList.map((encounter) => 
           <img
             src={`${encounter.sprites.front_default}`}
             alt={encounter.name}

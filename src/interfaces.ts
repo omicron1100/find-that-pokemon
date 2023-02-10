@@ -110,7 +110,7 @@ export interface PokemonEncounters {
 
 export interface PokemonData {
   id: number;
-  name: number;
+  name: string;
   base_experience: number;
   height: number;
   is_default: boolean;
